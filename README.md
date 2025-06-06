@@ -48,3 +48,34 @@ By default, this theme is setup to not include the compiled assets in source con
 assets/css/theme.css
 assets/js/build/app.js
 ```
+## How to Run WinterCMS Documentaion Locally 
+#### Create the Project 
+```
+composer create-project wintercms/winter wintercms-docs
+cd wintercms-docs
+```
+#### Install Required Plugins
+```
+composer require winter/wn-docs-plugin winter/wn-search-plugin winter/wn-seo-plugin
+php artisan winter:up
+```
+#### Prepare Theme
+```
+cd themes/
+git clone https://github.com/wintercms/wn-nabu-theme nabu
+cd ..
+```
+#### Install and Build Assets
+```
+php artisan mix:install
+php artisan mix:watch --production theme-nabu
+```
+#### Process the Documentation
+```
+php artisan docs:process
+```
+#### Run the Development Server
+```
+php artisan serve
+```
+Docs available at: `http://localhost:8000/docs`
